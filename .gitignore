@@ -22,3 +22,12 @@ logs
 .env
 .env.*
 !.env.example
+# Ignorer les fichiers de log
+*.log
+
+# Ignorer les fichiers temporaires
+*.tmp
+
+# Ignorer les répertoires de cache
+/node_modules/
+/api/node_modules/
