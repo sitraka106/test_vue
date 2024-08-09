@@ -1,8 +1,15 @@
 <template>
-  <div class="p-6 bg-gray-100 min-h-screen">
-    <!-- Titre principal du panneau d'administration -->
-    <h1 class="text-4xl font-extrabold mb-6 text-gray-800">Admin Panel</h1>
-    
+  <div class="p-6 bg-gray-100 min-h-screen ">
+    <div class="flex justify-between items-center mb-6">
+      <!-- Titre principal du panneau d'administration -->
+      <h1 class="text-4xl font-extrabold text-gray-800">Admin Panel</h1>
+      <!-- Bouton de déconnexion aligné à droite -->
+      <button @click="logout" class="flex flex-row bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+        <ArrowRightStartOnRectangleIcon  class="h-6 w-6 mr-2" />
+        Logout
+      </button>
+    </div>
+
     <section class="mb-8 bg-white p-6 rounded-lg shadow-md">
       <h2 class="text-3xl font-semibold mb-4 text-gray-700">Manage Users</h2>
       
@@ -114,7 +121,8 @@ definePageMeta({
 });
 
 // Importation des icônes pour les actions d'édition et de suppression
-import { PencilIcon, TrashIcon } from '@heroicons/vue/24/outline';
+import { PencilIcon, TrashIcon  } from '@heroicons/vue/24/outline';
+import { ArrowRightStartOnRectangleIcon  } from '@heroicons/vue/24/outline'; 
 
 // Importation des fonctionnalités de Vue
 import { ref, onMounted } from 'vue';
@@ -146,9 +154,16 @@ const tasks = ref([]);
 // Importation des stores pour les tâches et les utilisateurs
 import { useTaskStore } from '~/stores/task';
 import { useUserStore } from '~/stores/user';
+import { useAuthStore } from '~/stores/auth'; 
 
+// Accéder au store 
+const authStore = useAuthStore();
 const taskStore = useTaskStore();
 const userStore = useUserStore();
+
+const logout = () => {
+  authStore.logout();
+};
 
 // fct pour récupérer les utilisateurs depuis le store
 const fetchUsers = async () => {

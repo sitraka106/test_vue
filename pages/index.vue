@@ -1,6 +1,14 @@
 <template>
-  <div class="p-6">
-    <h1 class="text-3xl font-bold mb-6">Mes Tâches</h1>
+  <div class="p-6 bg-white min-h-screen ">
+    <div class="flex justify-between items-center mb-6">
+      <!-- Titre principal du panneau d'administration -->
+      <h1 class="text-4xl font-extrabold text-gray-800">Mes taches</h1>
+      <!-- Bouton de déconnexion aligné à droite -->
+      <button @click="logout" class="flex flex-row bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+        <ArrowRightStartOnRectangleIcon  class="h-6 w-6 mr-2" />
+        Logout
+      </button>
+    </div>
     <div class="overflow-x-auto">
       <table class="min-w-full bg-white border border-gray-200 rounded-md shadow-sm">
         <thead class="bg-gray-100 text-gray-600 border-b">
@@ -45,7 +53,11 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { PencilIcon } from '@heroicons/vue/24/outline';
 import TaskModal from '../components/TaskModal.vue';
+import { ArrowRightStartOnRectangleIcon  } from '@heroicons/vue/24/outline'; 
+import { useAuthStore } from '~/stores/auth'; 
 
+// Accéder au store 
+const authStore = useAuthStore();
 const isTaskModalVisible = ref(false);
 const selectedTaskId = ref(null);
 
@@ -53,6 +65,9 @@ import { useTaskStore } from '~/stores/task';
 const taskStore = useTaskStore();
 const fetchTasks = async () => {
   await taskStore.fetchTasks();
+};
+const logout = () => {
+  authStore.logout();
 };
 
 
