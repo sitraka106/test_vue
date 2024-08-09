@@ -1,3 +1,9 @@
+#  Description
+
+Ce projet est une application de gestion des projets et des utilisateurs utilisant node.js/express.js, sequelize, MySQL pour le back et nuxt.js, Pinia pour le front. le back se trouve dans le dossier API.
+
+
+
 # To launch project
 
 ## Setup
