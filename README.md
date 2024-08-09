@@ -76,3 +76,4 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 # launch API
 
 ## Enter into api folder
+You need to enter in api folder to launch API server. Follow the instructions in readme.md at ./api folder to proceed.
